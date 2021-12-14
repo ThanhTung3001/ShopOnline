@@ -2,9 +2,8 @@ package com.example.springweb.entity;
 import lombok.*;
 
 import javax.persistence.*;
-import java.util.Collection;
-import java.util.HashSet;
-import java.util.Set;
+import javax.validation.constraints.Size;
+import java.util.*;
 
 @ToString
 @Entity
@@ -30,6 +29,8 @@ public class ProductEntity {
     private String image;
     @Column
     private  int timeInsurance;
+    @Size(min=100,max=4000)
+    private String description;
     @ManyToOne
     @JoinColumn(name = "category_id")
     @EqualsAndHashCode.Exclude
@@ -41,4 +42,17 @@ public class ProductEntity {
     @ManyToMany(mappedBy = "productE")
     @EqualsAndHashCode.Exclude
     private Set<InsuranceEntity> insuranceEntities=new HashSet<>();
+
+    @ManyToMany(cascade = CascadeType.ALL)
+    @JoinTable(name = "product_img",
+            joinColumns = @JoinColumn(name = "product_id"),
+            inverseJoinColumns = @JoinColumn(name = "img_id"))
+    public List<ImageEntity> images= new ArrayList<>();
+
+    @ManyToMany
+    @JoinTable(name = "product_size",
+            joinColumns = @JoinColumn(name = "product_id"),
+            inverseJoinColumns = @JoinColumn(name = "Size_id")
+    )
+    public List<SizeEnity> sizeEnities = new ArrayList<>();
 }

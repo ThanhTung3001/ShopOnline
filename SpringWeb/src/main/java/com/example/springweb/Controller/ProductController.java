@@ -5,6 +5,7 @@ import com.example.springweb.Service.IProductService;
 import com.example.springweb.dto.CategoryDto;
 import com.example.springweb.dto.ProductDto;
 import com.example.springweb.entity.CategoryEntity;
+import com.example.springweb.entity.ImageEntity;
 import com.example.springweb.entity.ProductEntity;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -25,7 +26,15 @@ public class ProductController {
     @Autowired
     IProductService productService;
     @PostMapping()
-    public ModelAndView addProduct(@RequestParam String name, @RequestParam String img , @RequestParam String price, @RequestParam String Quatity, @RequestParam String category ){
+    public ModelAndView addProduct(@RequestParam String name,
+                                   @RequestParam String img
+                                , @RequestParam String price
+                                  , @RequestParam String Quatity,
+                                   @RequestParam String category,@RequestParam String img1,
+                                   @RequestParam String img2,@RequestParam String img3,@RequestParam String img4,
+                                   @RequestParam String img5,
+                                   @RequestParam String description
+    ){
         ProductEntity productEntity = new ProductEntity();
         productEntity.setName(name);
         productEntity.setPrice(Long.valueOf(price));
@@ -34,6 +43,12 @@ public class ProductController {
         categoryEntity.setId(Long.valueOf(category));
         productEntity.setCategoryEntity(categoryEntity);
         productEntity.setQuantity(Integer.parseInt(Quatity));
+        productEntity.images.add(new ImageEntity(img1));
+        productEntity.images.add(new ImageEntity(img2));
+        productEntity.images.add(new ImageEntity(img3));
+        productEntity.images.add(new ImageEntity(img4));
+        productEntity.images.add(new ImageEntity(img5));
+        productEntity.setDescription(description);
         productService.addProduct(productEntity);
         return new ModelAndView("redirect:products");
     }

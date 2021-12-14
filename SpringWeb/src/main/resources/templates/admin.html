@@ -27,19 +27,49 @@
                 <div class="form-group">
                     <label >Price </label>
                     <input type="text" class="form-control" name="price" aria-describedby="emailHelp" placeholder="Price">
+                </div>
+                <div class="form-group">
+                    <label >Quatity </label>
+                    <input type="text" class="form-control" name="Quatity" aria-describedby="emailHelp" placeholder="link">
 
                 </div>
                 <div class="form-group">
-                    <label >Quatity</label>
-                    <input type="text" class="form-control" name="Quatity" aria-describedby="emailHelp" placeholder="Quatity">
+                    <label >Image 1</label>
+                    <input type="text" class="form-control" name="img1" aria-describedby="emailHelp" placeholder="link">
 
                 </div>
+                <div class="form-group">
+                    <label >Image 2</label>
+                    <input type="text" class="form-control" name="img2" aria-describedby="emailHelp" placeholder="link">
+
+                </div>
+                <div class="form-group">
+                    <label >Image 3</label>
+                    <input type="text" class="form-control" name="img3" aria-describedby="emailHelp" placeholder="link">
+
+                </div>
+                <div class="form-group">
+                    <label >Image 4</label>
+                    <input type="text" class="form-control" name="img4" aria-describedby="emailHelp" placeholder="link">
+
+                </div>
+                <div class="form-group">
+                    <label >Image 5</label>
+                    <input type="text" class="form-control" name="img5" aria-describedby="emailHelp" placeholder="link">
+
+                </div>
+
                 <div class="form-group">
                     <label >Category</label>
                     <select class="form-control" name="category" >
                         <option th:each="category, stat : ${CategoryList}" th:value="${category.id}" th:text="${category.name}"></option>
                     </select>
                 </div>
+                <div class="form-group">
+                    <label for="exampleFormControlTextarea1">Description</label>
+                    <textarea class="form-control" id="exampleFormControlTextarea1" name="description" rows="3"></textarea>
+                </div>
+
                 <button type="submit" class="btn btn-primary">Submit</button>
             </form>
         </div>
@@ -51,6 +81,7 @@
                         <th scope="col">ID</th>
                         <th scope="col">Name</th>
                         <th scope="col">Price</th>
+                        <th scope="col">Descreption</th>
                         <th scope="col">Image</th>
 
                     </tr>
@@ -60,6 +91,7 @@
                         <th scope="row" th:text="${product.id}"></th>
                         <td th:text="${product.name}"></td>
                         <td th:text="${product.price}"></td>
+                        <td th:text="${product.description}"></td>
                         <td ><img style="width: 200px;height: auto" th:src="${product.image}"></td>
 
                     </tr>

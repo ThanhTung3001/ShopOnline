@@ -1,10 +1,7 @@
 package com.example.springweb.ConvertDto;
 
 
-import com.example.springweb.dto.CartItemDto;
-import com.example.springweb.dto.CategoryDto;
-import com.example.springweb.dto.ProductDto;
-import com.example.springweb.dto.UserDto;
+import com.example.springweb.dto.*;
 import com.example.springweb.entity.CategoryEntity;
 import com.example.springweb.entity.ProductEntity;
 import com.example.springweb.entity.UserEntity;
@@ -34,6 +31,7 @@ public class ConvertDto {
               productDto.setQuantity(product.getQuantity());
               productDto.setPrice(product.getPrice());
               productDto.setTimeInsurance(product.getTimeInsurance());
+              productDto.setDescription(product.getDescription());
               list.add(productDto);
           });
         return list;
@@ -56,6 +54,13 @@ public class ConvertDto {
           productDto.setQuantity(productEntity.getQuantity());
           productDto.setPrice(productEntity.getPrice());
           productDto.setTimeInsurance(productEntity.getTimeInsurance());
+          productDto.setDescription(productEntity.getDescription());
+          productEntity.images.forEach(e->{
+              productDto.imgs.add(new ImageDto(e.id, e.link));
+          });
+          productEntity.sizeEnities.forEach(e->{
+               productDto.sizes.add(new SizeDto(e.id,e.size));
+          });
       return productDto;
       }
       public CartItemDto toCartItemDto(ProductDto productDto){
